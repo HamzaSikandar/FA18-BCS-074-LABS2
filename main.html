@@ -1,12 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./jcrud.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
-    <h1>hahahha</h1>
+  <body class="container border border-success">
+    <h1>Products API CLient</h1>
+    <div id="BTN">
+    <button
+    type="button"
+    id="button"
+    class="btn btn-primary btn-md"
+    data-toggle="modal"
+    data-target="#addModal"
+    >
+    Add Product
+    </button>
+</div>
+
+    <div id="products">loading...</div>
+   
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add New Product</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  aria-describedby="nameHelp"
+                  placeholder="Name of the Product"
+                />
+                <small id="nameHelp" class="form-text text-muted"
+                  >Enter Name of the Product</small
+                >
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input
+                type="text"
+                class="form-control"
+                name="price"
+                id="price"
+                aria-describedby="priceHelp"
+                placeholder="Price of the Product"
+              />
+              <small id="priceHelp" class="form-text text-muted"
+                >Enter Price of the Product</small
+              >
+              <div class="form-group">
+                <label for="color">Color</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="color"
+                  id="color"
+                  aria-describedby="colorHelp"
+                  placeholder="Color of the Product"
+                />
+                <small id="colorHelp" class="form-text text-muted"
+                  >Enter Color of the Product</small
+                >
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="department"
+                      id="department"
+                      aria-describedby="departmentHelp"
+                      placeholder="Department of the Product"
+                    />
+                    <small id="departmentHelp" class="form-text text-muted"
+                      >Enter Department of the Product</small
+                    >
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                name="description"
+                id="description"
+                aria-describedby="descriptionHelp"
+                placeholder="Description of Product"
+              />
+              <small id="descriptionHelp" class="form-text text-muted"
+                >Enter Description</small
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="addBtn" class="btn btn-info">Add Product</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Edit Product Modal -->
+    <div
+    class="modal fade"
+    id="editProductModal"
+    tabindex="-1"
+    aria-labelledby="editProductModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">
+            Adding New Product
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            data-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="editProductTitle">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              name="editProductTitle"
+              id="editProductTitle"
+              aria-describedby="helpId"
+              placeholder="Title of Product"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductPrice">Price</label>
+            <input
+              type="text"
+              class="form-control"
+              name="editProductPrice"
+              id="editProductPrice"
+              aria-describedby="helpId"
+              placeholder="Price of Product"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductColor">Color</label>
+            <input
+              type="text"
+              class="form-control"
+              name="editProductColor"
+              id="editProductColor"
+              aria-describedby="helpId"
+              placeholder="Color of Product"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductDepartment">Department</label>
+            <input
+              type="text"
+              class="form-control"
+              name="editProductDepartment"
+              id="editProductDepartment"
+              aria-describedby="helpId"
+              placeholder="Department of Product"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductDescription">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              name="editProductDescription"
+              id="editProductDescription"
+              aria-describedby="helpId"
+              placeholder="Description of Product"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button id="updateBtn" class="btn btn-info">Update Product</button>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
   </body>
 </html>

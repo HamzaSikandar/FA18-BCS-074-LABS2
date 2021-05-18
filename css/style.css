@@ -1,0 +1,18 @@
+.container {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.product {
+  border-bottom: 2px solid rgb(0, 183, 255);
+  margin-bottom: 10px;
+}
+.product p {
+  padding: 3px;
+}
+#BTN {
+  border-bottom: 2px solid rgb(0, 183, 255);
+  margin-bottom: 10px;
+}
+#button {
+  margin-bottom: 10px;
+}
